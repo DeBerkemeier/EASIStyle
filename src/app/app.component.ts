@@ -1,22 +1,66 @@
+import { MatIconRegistry } from '@angular/material/icon';
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-
-import { TabsPage } from '../pages/tabs/tabs';
-
+import { DomSanitizer } from '@angular/platform-browser';
 @Component({
-  templateUrl: 'app.html'
+  selector: 'app-root',
+  templateUrl: 'app.component.html',
+  styleUrls: ['app.component.scss'],
 })
-export class MyApp {
-  rootPage:any = TabsPage;
+export class AppComponent {
+  constructor(
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer
+  ) {
+    // Custom Icon Registry
+    this.matIconRegistry.addSvgIcon(
+      'ToolboxIcon_orange',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        '../assets/icons/ToolboxIcon_orange.svg'
+      )
+    );
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
-    });
+    this.matIconRegistry.addSvgIcon(
+      'toolboxIcon',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        '../assets/icons/toolbox-meeting.svg'
+      )
+    );
+
+      this.matIconRegistry.addSvgIcon(
+        'warning',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/icons/warning.svg')
+      );
+
+      this.matIconRegistry.addSvgIcon(
+        'riskIcon',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/icons/Gefährdungsbeurteilung Icon medium')
+      );
+    this.matIconRegistry.addSvgIcon(
+      'intructionsicon',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        '../assets/icons/instruction.svg'
+      )
+    );
+
+    this.matIconRegistry.addSvgIcon(
+      'riskIcon',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        '../assets/icons/Gefährdungsbeurteilung Icon medium'
+      )
+    );
+
+    this.matIconRegistry.addSvgIcon(
+      'qualificationsIcon',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        '../assets/icons/student-hat.svg'
+      )
+    );
+
+    this.matIconRegistry.addSvgIcon(
+      'medicalCheckupIcon',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        '../assets/icons/medical-checkup.svg'
+      )
+    );
   }
 }
